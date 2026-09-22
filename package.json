@@ -1,0 +1,16 @@
+{
+  "name": "reforma-datasul-cloudflare",
+  "version": "2.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "db:create": "wrangler d1 create reforma-datasul-db",
+    "db:migrate:local": "wrangler d1 migrations apply reforma-datasul-db --local",
+    "db:migrate:remote": "wrangler d1 migrations apply reforma-datasul-db --remote",
+    "types": "wrangler types"
+  },
+  "devDependencies": {
+    "wrangler": "^4.34.0"
+  }
+}

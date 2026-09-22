@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light" />
+  <meta name="theme-color" content="#113b36" />
+  <title>Reforma Datasul · Radar Tributário</title>
+  <meta name="description" content="Radar objetivo da Reforma Tributária: legislação, TOTVS Datasul, Debiasi e ações internas." />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar" aria-label="Navegação principal">
+      <div class="brand">
+        <div class="brand-icon">RD</div>
+        <div><strong>Reforma Datasul</strong><span>Radar Tributário</span></div>
+      </div>
+
+      <nav id="nav" class="nav-list">
+        <button class="nav-item active" data-view="home"><span class="nav-icon">⌂</span><span>Início</span></button>
+        <button class="nav-item" data-view="updates"><span class="nav-icon">●</span><span>Pendências</span><b id="navPendingCount" class="nav-count">0</b></button>
+        <button class="nav-item" data-view="timeline"><span class="nav-icon">◷</span><span>Cronograma</span></button>
+        <button class="nav-item" data-view="areas"><span class="nav-icon">▦</span><span>Por área</span></button>
+        <button class="nav-item" data-view="sources"><span class="nav-icon">◎</span><span>Fontes</span></button>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="trust-box"><span class="trust-icon">✓</span><div><b>Regra de confiança</b><small>IA resume. Pessoas validam e implementam.</small></div></div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">PFAUDLER · REFORMA TRIBUTÁRIA</p>
+          <h1 id="viewTitle">O que precisa de atenção?</h1>
+          <p id="viewSubtitle" class="subtitle">Veja primeiro as ações, depois os detalhes.</p>
+        </div>
+        <div class="top-actions">
+          <button id="areaChooser" class="area-chooser" type="button"><span>Minha visão:</span><b id="currentArea">Todas as áreas</b><span>⌄</span></button>
+          <button id="newManualBtn" class="primary-btn" type="button">+ Registrar orientação</button>
+        </div>
+      </header>
+
+      <section id="healthBanner" class="health-banner loading">
+        <span class="health-dot"></span>
+        <div><b id="healthTitle">Carregando o Radar…</b><small id="healthText">Consultando histórico e saúde das fontes.</small></div>
+        <button id="healthDetailsBtn" class="link-btn" type="button">Ver fontes</button>
+      </section>
+
+      <section id="homeView" class="view active">
+        <div id="heroMetrics" class="hero-metrics"></div>
+
+        <div class="home-grid">
+          <section class="panel attention-panel">
+            <div class="panel-head">
+              <div><p class="eyebrow">FAÇA PRIMEIRO</p><h2>Fila de atenção</h2><p class="panel-subtitle">Só o que exige análise, ação ou teste.</p></div>
+              <button class="soft-btn" data-go="updates" type="button">Ver todas</button>
+            </div>
+            <div id="attentionList" class="attention-list"></div>
+          </section>
+
+          <aside class="panel deadlines-panel">
+            <div class="panel-head compact"><div><p class="eyebrow">DATAS</p><h2>Próximos marcos</h2></div><button class="link-btn" data-go="timeline" type="button">Cronograma</button></div>
+            <div id="deadlineList" class="deadline-list"></div>
+          </aside>
+        </div>
+
+        <section class="panel area-overview-panel">
+          <div class="panel-head"><div><p class="eyebrow">IMPACTO POR ÁREA</p><h2>Onde está concentrado o trabalho?</h2></div><span class="muted">Itens ainda não concluídos</span></div>
+          <div id="areaOverview" class="area-overview"></div>
+        </section>
+
+        <section class="how-to-read">
+          <div><span class="source-mark official"></span><b>Oficial</b><small>Receita, CGIBS e NF-e: o que a norma/documento oficial diz.</small></div>
+          <div><span class="source-mark provider"></span><b>TOTVS</b><small>Como o Datasul está entregando ou planejando a adequação.</small></div>
+          <div><span class="source-mark interpretation"></span><b>Debiasi</b><small>Interpretação e orientação fiscal-contábil recebida da auditoria.</small></div>
+          <div><span class="source-mark internal"></span><b>Interno</b><small>Decisão, homologação e instrução efetivamente adotada pela empresa.</small></div>
+        </section>
+      </section>
+
+      <section id="updatesView" class="view">
+        <div class="toolbar panel">
+          <label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Buscar assunto, programa, módulo ou área…" /></label>
+          <select id="urgencyFilter"><option value="all">Toda prioridade</option><option value="high">Alta prioridade</option><option value="medium">Média prioridade</option><option value="low">Baixa prioridade</option></select>
+          <select id="originFilter"><option value="all">Toda origem</option><option value="official">Oficial</option><option value="provider">TOTVS</option><option value="interpretation">Debiasi</option><option value="internal">Interno</option></select>
+          <select id="statusFilter"><option value="active">Em aberto</option><option value="all">Todos os status</option><option value="new">Novo</option><option value="analysis">Em análise</option><option value="action">Ação necessária</option><option value="homologation">Homologação</option><option value="implemented">Implementado</option><option value="not_applicable">Não aplicável</option></select>
+        </div>
+        <section class="panel">
+          <div class="panel-head"><div><p class="eyebrow">ACOMPANHAMENTO</p><h2>Pendências e atualizações</h2></div><span id="resultsCount" class="muted"></span></div>
+          <div id="allEvents" class="event-table"></div>
+        </section>
+      </section>
+
+      <section id="timelineView" class="view">
+        <section class="panel">
+          <div class="panel-head"><div><p class="eyebrow">LINHA DO TEMPO</p><h2>O que acontece e quando</h2><p class="panel-subtitle">Datas confirmadas aparecem primeiro; itens sem vigência ficam separados.</p></div></div>
+          <div id="timelineList" class="timeline"></div>
+        </section>
+      </section>
+
+      <section id="areasView" class="view">
+        <section class="panel">
+          <div class="panel-head"><div><p class="eyebrow">VISÃO OPERACIONAL</p><h2>O que cada área precisa saber</h2><p class="panel-subtitle">Sem detalhes técnicos que não mudem o trabalho da área.</p></div></div>
+          <div id="areaTabs" class="area-tabs"></div>
+          <div id="areaFocus" class="area-focus"></div>
+        </section>
+      </section>
+
+      <section id="sourcesView" class="view">
+        <section class="panel">
+          <div class="panel-head"><div><p class="eyebrow">RASTREABILIDADE</p><h2>Fontes monitoradas</h2><p class="panel-subtitle">O Radar nunca trata TOTVS ou Debiasi como se fossem legislação.</p></div></div>
+          <div id="sourcesGrid" class="sources-grid"></div>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <dialog id="areaDialog" class="modal small-modal">
+    <form method="dialog" class="modal-card">
+      <div class="modal-head"><div><p class="eyebrow">PERSONALIZAR VISÃO</p><h2>Qual área você quer enxergar?</h2></div><button class="icon-btn" value="cancel">×</button></div>
+      <div id="areaPicker" class="area-picker"></div>
+    </form>
+  </dialog>
+
+  <dialog id="eventDialog" class="modal">
+    <form method="dialog" class="modal-card detail-modal">
+      <div class="modal-head"><div id="detailChips"></div><button class="icon-btn" value="cancel">×</button></div>
+      <div id="eventDetail"></div>
+    </form>
+  </dialog>
+
+  <dialog id="manualDialog" class="modal">
+    <form id="manualForm" class="modal-card form-modal">
+      <div class="modal-head"><div><p class="eyebrow">REGISTRO CONTROLADO</p><h2>Nova orientação ou decisão</h2><p class="panel-subtitle">Use para Debiasi, decisão interna ou informação TOTVS não coletada automaticamente.</p></div><button type="button" class="icon-btn" id="closeManual">×</button></div>
+      <div class="form-section"><label>Origem<select name="sourceId" required><option value="debiasi">Debiasi — auditoria / interpretação</option><option value="internal">Decisão interna Pfaudler</option><option value="totvs-cronograma-simples">TOTVS / Datasul</option></select></label><label>Título<input name="title" required maxlength="180" placeholder="Ex.: Regra de devolução validada pela Debiasi" /></label><label>Explique em linguagem simples<textarea name="summary" required rows="4" placeholder="O que mudou ou qual foi a orientação?"></textarea></label></div>
+      <div class="form-grid"><label>Vigência<input name="effectiveDate" type="date" /></label><label>Prioridade<select name="urgency"><option value="medium">Média</option><option value="high">Alta</option><option value="low">Baixa</option></select></label></div>
+      <fieldset><legend>Quem é afetado?</legend><div class="check-grid" id="manualAreas"></div></fieldset>
+      <div class="form-section"><label>Ação para TI<textarea name="actionTi" rows="2" placeholder="Se não houver, deixe em branco."></textarea></label><label>Ação Fiscal/Contábil<textarea name="actionFiscal" rows="2"></textarea></label><label>O que o usuário precisa fazer<textarea name="actionUser" rows="2"></textarea></label><label>Evidência / referência<textarea name="evidence" rows="2" placeholder="E-mail, ata, chamado, documento, link etc."></textarea></label></div>
+      <div class="modal-actions"><button type="button" class="soft-btn" id="cancelManual">Cancelar</button><button type="submit" class="primary-btn">Salvar no Radar</button></div>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast"></div>
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

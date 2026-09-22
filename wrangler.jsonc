@@ -1,0 +1,30 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "reforma-datasul",
+  "main": "./src/index.ts",
+  "compatibility_date": "2026-09-17",
+  "workers_dev": true,
+  "preview_urls": true,
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/api/*"]
+  },
+  "ai": {
+    "binding": "AI"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "reforma-datasul-db",
+      "database_id": "COLE_AQUI_O_DATABASE_ID"
+    }
+  ],
+  "triggers": {
+    "crons": ["0 9 * * *", "15 9 * * *", "30 9 * * *", "45 9 * * *"]
+  },
+  "vars": {
+    "APP_TIMEZONE": "America/Sao_Paulo"
+  }
+}
